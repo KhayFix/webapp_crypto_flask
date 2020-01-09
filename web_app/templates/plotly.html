@@ -1,0 +1,12 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title.title() }}</title>
+<!--  скрипт плотли, который обрабатывает полученные данные и преобразует их в график -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <!-- Данные для построения графика беруться из скрипта plotly_graph -->
+  <div>{{ graph|safe }}</div>
+</body>
+</html>
