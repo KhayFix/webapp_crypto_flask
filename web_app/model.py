@@ -16,29 +16,35 @@ def connection_to_base():
     return conn
 
 
-def retrieving_table_data(table_database: str):
+def data_conversion(database_data):
     my_list = []
+    # преобразование данных к формату словаря полученных из базы данных
+    for record in database_data:
+        value = datetime.fromtimestamp(record[1])
+        my_list.append({
+            "id": record[0],
+            "Timestamp": value.strftime('%d-%m-%Y %H:%M:%S'),
+            "Open": float(record[2]),
+            "Close": float(record[3]),
+            "High": float(record[4]),
+            "Low": float(record[5]),
+            "Volume": float(record[6])
+        })
+
+    return my_list
+
+
+def retrieving_table_data(database_table_title: str):
     with connection_to_base() as conn:
         with conn.cursor() as curs:
             curs.execute(
-                f'''SELECT * FROM "{table_database}" '''
+                f'''SELECT * FROM "{database_table_title}" '''
             )
-
-            for record in curs:
-                value = datetime.fromtimestamp(record[1])
-                my_list.append({
-                    "id": record[0],
-                    "Timestamp": value.strftime('%d-%m-%Y %H:%M:%S'),
-                    "Open": float(record[2]),
-                    "Close": float(record[3]),
-                    "High": float(record[4]),
-                    "Low": float(record[5]),
-                    "Volume": float(record[6])
-                })
+            modified_data = data_conversion(curs)
 
     print('Таблица успешно прочитана')
     conn.close()
-    return my_list
+    return modified_data
 
 
 if __name__ == "__main__":
