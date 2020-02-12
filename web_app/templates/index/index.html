@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<header>
+    <div class="container">
+        <div class="heading clearfix">
+
+        </div>
+        <div class="titles">
+            <div class="titles_first">
+                Добро пожаловать в нашу лабораторию
+            </div>
+            <h1>
+                {{ page_title }}
+            </h1>
+        </div>
+        <a class="button" href="{{url_for('create_plot')}}">Демо график</a>
+    </div>
+</header>
+<section id="services">
+    <div class="container">
+        <div class="title">
+            <h2>
+                Сервис
+            </h2>
+            <p>
+                Мы предоставляем в режиме демострации агрегированные графики криптовалют.
+            </p>
+        </div>
+        <div class="services clearfix">
+            <div class="services__item">
+                <a type="button" class="btn btn-outline-warning btn-circle" href="#">
+                    <img src="static/img/icon1.png" alt="ETH"></a>
+                <h3>ETH</h3>
+                <p>
+                    Курс ETH/USD онлайн на сегодня
+                </p>
+            </div>
+            <div class="services__item">
+                <a type="button" class="btn btn-outline-success btn-circle" href="#">
+                    <img src="static/img/icon2.png" alt="BTC"></a>
+                <h3>BTC</h3>
+                <p>
+                    Курс BTC/USD онлайн на сегодня
+                </p>
+            </div>
+            <div class="services__item">
+                <a type="button" class="btn btn-outline-primary btn-circle" href="#">
+                    <img src="static/img/icon3.png" alt="XRP"></a>
+                <h3>XRP</h3>
+                <p>
+                    Курс XRP/USD онлайн на сегодня
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
