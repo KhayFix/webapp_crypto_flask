@@ -5,6 +5,7 @@ from web_app.config import database
 
 
 def connection_to_base():
+    """Соединение с базой данных, параметры хранятся в config"""
     conn = psycopg2.connect(database=database['database'],
                             user=database['user'],
                             password=database['password'],
@@ -17,8 +18,8 @@ def connection_to_base():
 
 
 def data_conversion(database_data):
+    """Преобразует полученные из базы данных данные к формату словаря"""
     my_list = []
-    # преобразование данных к формату словаря полученных из базы данных
     for record in database_data:
         value = datetime.fromtimestamp(record[1])
         my_list.append({
@@ -35,6 +36,7 @@ def data_conversion(database_data):
 
 
 def retrieving_table_data(database_table_title: str):
+    """Запрашивает у таблицы данных, требуемые параметры и возвращает для преобразования в data_conversion()"""
     with connection_to_base() as conn:
         with conn.cursor() as curs:
             curs.execute(
