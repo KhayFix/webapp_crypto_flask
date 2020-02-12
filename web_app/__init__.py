@@ -11,7 +11,7 @@ def create_app():
     def index():
         """Главная страница"""
 
-        title = "Golden"
+        title = "PYN"
         return render_template('index/index.html', page_title=title)
 
     @app.route('/plotly&data_btc', methods=['GET'])
